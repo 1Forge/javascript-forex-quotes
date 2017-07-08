@@ -18,7 +18,7 @@ typescript-forex-quotes is a TypeScript Library for fetching realtime forex quot
 * An API key which you can obtain for free at http://1forge.com/forex-data-api
 
 ## Installation
-FIXME
+npm install forex-quotes
 
 ## Usage
 
