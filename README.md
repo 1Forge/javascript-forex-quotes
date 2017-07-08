@@ -1,6 +1,6 @@
-# forex-quotes
+# typescript-forex-quotes
 
-forex-quotes is a TypeScript Library for fetching realtime forex quotes
+typescript-forex-quotes is a TypeScript Library for fetching realtime forex quotes
 
 # Table of Contents
 
