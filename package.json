@@ -1,0 +1,21 @@
+{
+  "name": "forex-quotes",
+  "version": "1.0.0",
+  "description": "Realtime forex quote API client",
+  "main": "ForexDataClient.js",
+  "dependencies": {
+    "web-request": "^1.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "forex",
+    "currency",
+    "quotes",
+    "currency-converter"
+  ],
+  "author": "Jacob Davis",
+  "license": "MIT"
+}
