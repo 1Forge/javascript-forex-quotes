@@ -1,6 +1,6 @@
-# typescript-forex-quotes
+# forex-quotes
 
-typescript-forex-quotes is a TypeScript Library for fetching realtime forex quotes
+forex-quotes is a Javascript Library for fetching realtime forex quotes
 
 # Table of Contents
 
@@ -14,7 +14,6 @@ typescript-forex-quotes is a TypeScript Library for fetching realtime forex quot
 - [License / Terms](#license-and-terms)
 
 ## Requirements
-* TypeScript
 * An API key which you can obtain for free at http://1forge.com/forex-data-api
 
 ## Installation
@@ -77,7 +76,7 @@ client.convert('EUR', 'USD', 100).then(response => {
 ### Check if the market is open:
 ```typescript
 
-$client = new ForexDataClient('YOUR_API_KEY');
+let client = new ForexDataClient('YOUR_API_KEY');
 
 /*
 Returns:
@@ -94,7 +93,7 @@ client.marketStatus().then(response => {
 ### Check your usage / quota limit:
 ```typescript
 
-$client = new ForexDataClient('YOUR_API_KEY');
+let client = new ForexDataClient('YOUR_API_KEY');
 
 /*
 {   
