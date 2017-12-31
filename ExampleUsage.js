@@ -1,4 +1,4 @@
-import ForexDataClient from './ForexDataClient'
+const ForexDataClient = require("./ForexDataClient");
 
 class ExampleUsage
 {

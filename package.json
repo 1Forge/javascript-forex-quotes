@@ -4,7 +4,7 @@
   "description": "Realtime forex quote API client",
   "main": "ForexDataClient.js",
   "dependencies": {
-    "web-request": "^1.0.7"
+    "node-fetch": "^1.7.3"
   },
   "devDependencies": {},
   "scripts": {
