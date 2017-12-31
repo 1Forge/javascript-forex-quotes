@@ -1,6 +1,6 @@
-# forex-quotes
+# javascript-forex-quotes
 
-forex-quotes is a Javascript Library for fetching realtime forex quotes
+javascript-forex-quotes is a Javascript Library for fetching realtime forex quotes
 
 # Table of Contents
 
