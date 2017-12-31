@@ -82,7 +82,6 @@ client.connect((client) =>
     //Subscribe to all of currency pairs
     client.subscribeToAll();
 
-
     //Unsubcribe after 5 seconds and disconnect
     setTimeout(function()
     {
