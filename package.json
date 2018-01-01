@@ -1,11 +1,12 @@
 {
   "name": "forex-quotes",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "Realtime forex quote API client",
-  "main": "ForexDataClient.js",
+  "main": "./src/ForexDataClient.js",
   "dependencies": {
     "node-fetch": "^1.7.3",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4"
   },
   "devDependencies": {},
   "scripts": {
@@ -18,5 +19,11 @@
     "currency-converter"
   ],
   "author": "Jacob Davis",
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://1forge.com/",
+  "bugs": "https://github.com/1Forge/javascript-forex-quotes/issues",
+  "repository": {
+    "url": "https://github.com/1Forge/javascript-forex-quotes",
+    "type": "git"
+  }
 }
