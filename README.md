@@ -105,6 +105,14 @@ client.connect((client) =>
 });
 
 ```
+Handle the incoming data from the server
+
+```javascript
+client.onUpdate((symbol, data) => {
+    //What to do when we get an update from the server
+    console.log(symbol, data);
+});
+```
 
 
 ### Check if the market is open:
