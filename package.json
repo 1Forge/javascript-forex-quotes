@@ -1,16 +1,23 @@
 {
   "name": "forex-quotes",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Realtime forex quote API client",
-  "main": "./src/ForexDataClient.js",
+  "main": "./lib/ForexDataClient.js",
   "dependencies": {
     "node-fetch": "^1.7.3",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib"
+  },
+  "babel": {
+    "presets": ["es2015"]
   },
   "keywords": [
     "forex",
