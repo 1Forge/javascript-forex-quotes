@@ -7,7 +7,7 @@ class ForexDataClient
     {
         this.api_key = api_key;
         this.base_uri = 'https://forex.1forge.com/1.0.3/';
-        this.socket = io.connect('http://socket.forex.1forge.com:3000');
+        this.socket = io.connect('https://socket.forex.1forge.com:3000');
         this.initializeSocketClient();
     }
 
