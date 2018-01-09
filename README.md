@@ -79,7 +79,7 @@ client.connect((client) =>
         'EURCHF',
     ]);
 
-    //Subscribe to all of currency pairs
+    //Subscribe to all currency pairs
     client.subscribeToAll();
 
     //Unsubcribe after 5 seconds and disconnect
