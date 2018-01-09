@@ -85,10 +85,10 @@ client.connect((client) =>
     //Unsubcribe after 5 seconds and disconnect
     setTimeout(function()
     {
-        //Unsubscribe to a single currency pair
+        //Unsubscribe from a single currency pair
         client.unsubscribeFrom('EURUSD');
 
-        //Unsubscribe to an array of currency pairs
+        //Unsubscribe from an array of currency pairs
         client.unsubscribeFrom([
             'GBPJPY',
             'AUDCAD',
