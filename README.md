@@ -10,7 +10,8 @@ javascript-forex-quotes is a Javascript Library for fetching realtime forex quot
     - [List of Symbols available](#get-the-list-of-available-symbols)
     - [Get quotes for specific symbols](#get-quotes-for-specified-symbols)
     - [Convert from one currency to another](#convert-from-one-currency-to-another)
-    - [Stream quote updates (WebSocket)](#stream-quote-updates)
+    - [Check if the market is open](#check-if-the-market-is-open)
+    - [Stream quote updates via WebSocket](#stream-quote-updates)
 - [Support / Contact](#support-and-contact)
 - [License / Terms](#license-and-terms)
 
@@ -51,6 +52,19 @@ client.convert('EUR', 'USD', 100).then(response => {
 });
 ```
 
+### Check if the market is open:
+```javascript
+client.marketStatus().then(response => {
+    console.log(response);
+});
+```
+
+### Check your usage / quota limit:
+```javascript
+client.quota().then(response => {
+    console.log(response);
+})
+```
 
 ### Stream quote updates
 WebSocket quote streaming is only available on paid plans.
@@ -100,21 +114,6 @@ client.onUpdate((symbol, data) => {
     //What to do when we get an update from the server
     console.log(symbol, data);
 });
-```
-
-
-### Check if the market is open:
-```javascript
-client.marketStatus().then(response => {
-    console.log(response);
-});
-```
-
-### Check your usage / quota limit:
-```javascript
-client.quota().then(response => {
-    console.log(response);
-})
 ```
 
 ## Support and Contact
