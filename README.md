@@ -1,6 +1,6 @@
 # javascript-forex-quotes
 
-javascript-forex-quotes is a Javascript Library for fetching realtime forex quotes.  See the examples for REST and WebSocket implementation in the /examples folder
+javascript-forex-quotes is a Javascript Library for fetching realtime forex quotes.  See the examples for REST and WebSocket implementation in the [/examples](https://github.com/1Forge/javascript-forex-quotes/tree/master/examples) folder
 
 # Table of Contents
 
@@ -26,24 +26,19 @@ javascript-forex-quotes is a Javascript Library for fetching realtime forex quot
 ```javascript
 //You can get an API key for free at 1forge.com
 const ForexDataClient = require("forex-quotes");
+
 let client = new ForexDataClient('YOUR_API_KEY');
 ```
 
 ### Get the list of available symbols:
 
 ```javascript
-const ForexDataClient = require("forex-quotes");
-let client = new ForexDataClient('YOUR_API_KEY');
-
 client.getSymbols().then(response => {
     console.log(response);
 });
 ```
 ### Get quotes for specified symbols:
 ```javascript
-const ForexDataClient = require("forex-quotes");
-let client = new ForexDataClient('YOUR_API_KEY');
-
 client.getQuotes(['EURUSD', 'GBPJPY', 'AUDUSD']).then(response => {
     console.log(response);
 });
@@ -51,10 +46,6 @@ client.getQuotes(['EURUSD', 'GBPJPY', 'AUDUSD']).then(response => {
 
 ### Convert from one currency to another:
 ```javascript
-const ForexDataClient = require("forex-quotes");
-let client = new ForexDataClient('YOUR_API_KEY');
-
-
 client.convert('EUR', 'USD', 100).then(response => {
     console.log(response);
 });
@@ -64,9 +55,6 @@ client.convert('EUR', 'USD', 100).then(response => {
 ### Stream quote updates
 WebSocket quote streaming is only available on paid plans.
 ```javascript
-const ForexDataClient = require("forex-quotes");
-let client = new ForexDataClient('YOUR_API_KEY');
-
 client.connect((client) =>
 {
     //Subscribe to a single currency pair
@@ -117,10 +105,6 @@ client.onUpdate((symbol, data) => {
 
 ### Check if the market is open:
 ```javascript
-const ForexDataClient = require("forex-quotes");
-let client = new ForexDataClient('YOUR_API_KEY');
-
-
 client.marketStatus().then(response => {
     console.log(response);
 });
@@ -128,14 +112,10 @@ client.marketStatus().then(response => {
 
 ### Check your usage / quota limit:
 ```javascript
-const ForexDataClient = require("forex-quotes");
-let client = new ForexDataClient('YOUR_API_KEY');
-
 client.quota().then(response => {
     console.log(response);
 })
 ```
-
 
 ## Support and Contact
 Please contact me at contact@1forge.com if you have any questions or requests.
