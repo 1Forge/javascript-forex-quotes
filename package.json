@@ -1,6 +1,6 @@
 {
   "name": "forex-quotes",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Realtime forex quote API client",
   "main": "./lib/ForexDataClient.js",
   "dependencies": {

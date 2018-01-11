@@ -1,3 +1,8 @@
+/*
+ * This library is provided without warranty under the MIT license
+ * Created by Jacob Davis <jacob@1forge.com>
+ */
+
 const fetch = require("node-fetch");
 const io = require('socket.io-client');
 
@@ -7,8 +12,6 @@ class ForexDataClient
     {
         this.api_key = api_key;
         this.base_uri = 'https://forex.1forge.com/1.0.3/';
-        this.socket = io.connect('https://socket.forex.1forge.com:3000');
-        this.initializeSocketClient();
     }
 
     login()
@@ -20,6 +23,8 @@ class ForexDataClient
     initializeSocketClient()
     {
         let self = this;
+
+        this.socket = io.connect('https://socket.forex.1forge.com:3000');
 
         this.socket.on('login', function()
         {
@@ -113,6 +118,7 @@ class ForexDataClient
 
     connect(login_function)
     {
+        this.initializeSocketClient();
         this.post_login = login_function;
         this.login();
     }

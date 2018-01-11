@@ -1,3 +1,8 @@
+/*
+ * This library is provided without warranty under the MIT license
+ * Created by Jacob Davis <jacob@1forge.com>
+ */
+
 const ForexDataClient = require("../src/ForexDataClient");
 
 let client = new ForexDataClient('YOUR_API_KEY');
