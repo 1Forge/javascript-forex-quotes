@@ -16,7 +16,6 @@ class ForexDataClient
 
     login()
     {
-        console.log("Logging in to socket server");
         this.socket.emit('login', this.api_key);
     }
 
@@ -29,16 +28,6 @@ class ForexDataClient
         this.socket.on('login', function()
         {
             self.login();
-        });
-
-        this.socket.on('message', function(data)
-        {
-            console.log(data)
-        });
-
-        this.socket.on('disconnect', function()
-        {
-            console.log("Disconnected from server");
         });
 
         this.socket.on('post_login_success', function()
@@ -57,7 +46,6 @@ class ForexDataClient
             return console.log("You must be logged in before unsubscribing from symbols");
         }
 
-        console.log("Unsubscribing from all symbols");
         this.socket.emit('unsubscribe_from_all');
     }
 
@@ -79,7 +67,6 @@ class ForexDataClient
             return;
         }
 
-        console.log("Unsubscribing from " + symbol);
         this.socket.emit('unsubscribe_from', symbol);
     }
 
@@ -101,7 +88,6 @@ class ForexDataClient
             return;
         }
 
-        console.log("Subscribing to " + symbol);
         this.socket.emit('subscribe_to', symbol);
     }
 
@@ -112,7 +98,6 @@ class ForexDataClient
             return console.log("You must be logged in before subscribing to symbols");
         }
 
-        console.log("Subscribing to all symbols");
         this.socket.emit('subscribe_to_all');
     }
 
@@ -126,6 +111,22 @@ class ForexDataClient
     disconnect()
     {
         this.socket.disconnect()
+    }
+
+    onMessage(message_function)
+    {
+        this.socket.on('message', function(data)
+        {
+            message_function(data);
+        });
+    }
+
+    onDisconnect(disconnect_function)
+    {
+        this.socket.on('disconnect', function()
+        {
+            disconnect_function();
+        });
     }
 
     onUpdate(update_function)

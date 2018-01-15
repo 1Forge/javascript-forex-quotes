@@ -106,14 +106,24 @@ client.connect((client) =>
     }, 5000);
 });
 
-```
-Handle the incoming data from the server
-
-```javascript
-client.onUpdate((symbol, data) => {
-    //What to do when we get an update from the server
+//Handle incoming price updates from the server
+client.onUpdate((symbol, data) =>
+{
     console.log(symbol, data);
 });
+
+//Handle non-price update messages
+client.onMessage((message) =>
+{
+    console.log(message);
+});
+
+//Handle disconnection from the server
+client.onDisconnect(() =>
+{
+    console.log("Disconnected from server");
+});
+
 ```
 
 ## Support and Contact
