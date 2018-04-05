@@ -21,20 +21,18 @@ class ForexDataClient
 
     initializeSocketClient()
     {
-        let self = this;
-
         this.socket = io.connect('https://socket.forex.1forge.com:3000');
 
-        this.socket.on('login', function()
+        this.socket.on('login', () =>
         {
-            self.login();
+            this.login();
         });
 
-        this.socket.on('post_login_success', function()
+        this.socket.on('post_login_success', () =>
         {
-            if (self.post_login)
+            if (this.post_login)
             {
-                self.post_login(self);
+                this.post_login(this);
             }
         });
     }
@@ -58,10 +56,10 @@ class ForexDataClient
 
         if (Array.isArray(symbol))
         {
-            let self = this;
 
-            symbol.forEach(function(symbol){
-                self.unsubscribeFrom(symbol);
+            symbol.forEach((symbol) =>
+            {
+                this.unsubscribeFrom(symbol);
             });
 
             return;
@@ -79,10 +77,9 @@ class ForexDataClient
 
         if (Array.isArray(symbol))
         {
-            let self = this;
-
-            symbol.forEach(function(symbol){
-                self.subscribeTo(symbol);
+            symbol.forEach((symbol) =>
+            {
+                this.subscribeTo(symbol);
             });
 
             return;
