@@ -105,7 +105,6 @@ class ForexDataClient
     {
         this.initializeSocketClient();
         this.post_login = login_function;
-        this.login();
     }
 
     disconnect()
