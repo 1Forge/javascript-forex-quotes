@@ -20,7 +20,7 @@ javascript-forex-quotes is a Javascript Library for fetching realtime forex quot
 * An API key which you can obtain for free at http://1forge.com/forex-data-api
 
 ## Installation
-```npm install forex-quotes```
+```npm install forex-quotes --save```
 
 ## Usage
 
