@@ -2,7 +2,7 @@
 
 javascript-forex-quotes is a Javascript Library for fetching realtime forex quotes.  See the examples for REST and WebSocket implementation in the [/examples](https://github.com/1Forge/javascript-forex-quotes/tree/master/examples) folder.
 
-![1Forge Data](https://1forge.com/images/1forge.gif)
+<a href="#">![1Forge Data](https://1forge.com/images/1forge.gif)</a>
 
 # Table of Contents
 
