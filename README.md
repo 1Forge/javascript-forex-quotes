@@ -29,9 +29,9 @@ javascript-forex-quotes is a Javascript Library for fetching realtime forex quot
 ### Instantiate the client
 ```javascript
 //You can get an API key for free at 1forge.com
-const ForexDataClient = require("forex-quotes");
+const ForgeClient = require("../lib/ForgeClient").default;
 
-let client = new ForexDataClient('YOUR_API_KEY');
+let client = new ForgeClient('YOUR_API_KEY');
 ```
 
 ### Get the list of available symbols:
@@ -72,8 +72,22 @@ client.quota().then(response => {
 ### Stream quote updates
 WebSocket quote streaming is only available on paid plans.
 ```javascript
-client.connect((client) =>
-{
+//Handle incoming price updates from the server
+client.onUpdate((symbol, data) => {
+    console.log(symbol, data);
+});
+
+//Handle non-price update messages
+client.onMessage((message) => {
+    console.log(message);
+});
+
+//Handle disconnection from the server
+client.onDisconnect(() => {
+    console.log("Disconnected from server");
+});
+
+client.connect((client) => {
     //Subscribe to a single currency pair
     client.subscribeTo('EURUSD');
 
@@ -88,8 +102,7 @@ client.connect((client) =>
     client.subscribeToAll();
 
     //Unsubcribe after 5 seconds and disconnect
-    setTimeout(function()
-    {
+    setTimeout(function() {
         //Unsubscribe from a single currency pair
         client.unsubscribeFrom('EURUSD');
 
@@ -109,23 +122,6 @@ client.connect((client) =>
     }, 5000);
 });
 
-//Handle incoming price updates from the server
-client.onUpdate((symbol, data) =>
-{
-    console.log(symbol, data);
-});
-
-//Handle non-price update messages
-client.onMessage((message) =>
-{
-    console.log(message);
-});
-
-//Handle disconnection from the server
-client.onDisconnect(() =>
-{
-    console.log("Disconnected from server");
-});
 
 ```
 ## Contributing

@@ -1,23 +1,36 @@
 {
   "name": "forex-quotes",
-  "version": "2.0.10",
+  "version": "3.0.0",
   "description": "Realtime forex quote API client",
-  "main": "./lib/ForexDataClient.js",
+  "main": "./lib/ForgeClient.js",
+  "types": "./lib/ForgeClient.d.ts",
   "dependencies": {
-    "node-fetch": "^1.7.3",
-    "socket.io": "^2.0.4",
-    "socket.io-client": "^2.0.4"
+    "socket.io-client": "^2.2.0",
+    "typed-rest-client": "^1.0.11"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
+    "@types/jest": "^23.3.10",
+    "@types/socket.io-client": "^1.4.32",
+    "dts-generator": "^2.1.0",
+    "husky": "^1.2.0",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-sonarts": "^1.8.0",
+    "typescript": "^3.1.6"
   },
   "scripts": {
-    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib"
+    "prepublish": "npm run build",
+    "test": "jest --verbose --coverage --runInBand tests/*/*.spec.ts",
+    "lint": "tslint --project ./tsconfig.json 'src/**/*.ts'",
+    "build": "npm run lint && npm run test && tsc"
   },
-  "babel": {
-    "presets": ["es2015"]
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build"
+    }
   },
   "keywords": [
     "forex",
@@ -25,7 +38,7 @@
     "quotes",
     "currency-converter"
   ],
-  "author": "Jacob Davis",
+  "author": "Jacob Tyler Davis",
   "license": "MIT",
   "homepage": "https://1forge.com/",
   "bugs": "https://github.com/1Forge/javascript-forex-quotes/issues",

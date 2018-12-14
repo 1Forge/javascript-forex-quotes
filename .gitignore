@@ -1,4 +1,7 @@
 /lib
 /node_modules
+/coverage
+.vscode
+.DS_Store
 .idea
 .yarn-error.log

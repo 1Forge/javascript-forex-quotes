@@ -3,9 +3,9 @@
  * Created by Jacob Davis <jacob@1forge.com>
  */
 
-const ForexDataClient = require("../src/ForexDataClient");
+const ForgeClient = require("../lib/ForgeClient").default;
 
-let client = new ForexDataClient('YOUR_API_KEY');
+let client = new ForgeClient('YOUR_API_KEY');
 
 //Get quotes for specified pairs
 client.getQuotes(['EURUSD', 'GBPJPY', 'AUDUSD']).then(response => {

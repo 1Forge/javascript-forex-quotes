@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-eslint-rules",
+    "tslint-config-airbnb",
+    "tslint-sonarts"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**",
+      "node_modules",
+      "build",
+      "scripts",
+      "acceptance-tests",
+      "webpack",
+      "jest",
+      "typings",
+      "src/setupTests.ts"
+    ]
+  },
+  "rules": {
+    "radix": false,
+    "no-console": false,
+    "import-name": false,
+    "no-identical-functions": false,
+    "interface-name": false,
+    "max-line-length": [true, 150],
+    "no-unused-expression": true,
+    "no-small-switch": false
+  }
+}
