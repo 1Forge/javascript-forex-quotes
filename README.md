@@ -29,7 +29,7 @@ javascript-forex-quotes is a Javascript Library for fetching realtime forex quot
 ### Instantiate the client
 ```javascript
 //You can get an API key for free at 1forge.com
-const ForgeClient = require("../lib/ForgeClient").default;
+const ForgeClient = require("forex-quotes").default;
 
 let client = new ForgeClient('YOUR_API_KEY');
 ```
