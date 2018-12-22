@@ -21,7 +21,7 @@ javascript-forex-quotes is a Javascript Library for fetching realtime forex quot
 
 ## Usage
 
-### Instantiating the client
+### Importing the client
 
 ```javascript
 
@@ -36,6 +36,8 @@ import ForgeClient from 'forex-quotes';
 ### Using WebSocket
 
 ```javascript
+
+let client = new ForgeClient('YOUR_API_KEY');
 
 // Handle incoming price updates from the server
 client.onUpdate((symbol, data) => {
