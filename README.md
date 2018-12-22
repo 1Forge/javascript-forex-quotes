@@ -28,36 +28,6 @@ const ForgeClient = require("forex-quotes").default;
 // With es6 or TypeScript
 import ForgeClient from 'forex-quotes';
 
-// RESTful API
-
-// You can get an API key at 1forge.com
-let client = new ForgeClient('YOUR_API_KEY');
-
-// Get the list of available symbols
-client.getSymbols().then(response => {
-    console.log(response);
-});
-
-// Get quotes for specified symbols:
-client.getQuotes(['EURUSD', 'GBPJPY', 'AUDUSD']).then(response => {
-    console.log(response);
-});
-
-// Convert from one currency to another:
-client.convert('EUR', 'USD', 100).then(response => {
-    console.log(response);
-});
-
-// Check if the market is open:
-client.marketStatus().then(response => {
-    console.log(response);
-});
-
-// Check your usage / quota limit:
-client.quota().then(response => {
-    console.log(response);
-})
-
 // WebSocket API
 
 // Handle incoming price updates from the server
@@ -109,6 +79,36 @@ client.onConnect(() => {
 });
 
 client.connect();
+
+// RESTful API
+
+// You can get an API key at 1forge.com
+let client = new ForgeClient('YOUR_API_KEY');
+
+// Get the list of available symbols
+client.getSymbols().then(response => {
+    console.log(response);
+});
+
+// Get quotes for specified symbols:
+client.getQuotes(['EURUSD', 'GBPJPY', 'AUDUSD']).then(response => {
+    console.log(response);
+});
+
+// Convert from one currency to another:
+client.convert('EUR', 'USD', 100).then(response => {
+    console.log(response);
+});
+
+// Check if the market is open:
+client.marketStatus().then(response => {
+    console.log(response);
+});
+
+// Check your usage / quota limit:
+client.quota().then(response => {
+    console.log(response);
+});
 
 ```
 ## Contributing
