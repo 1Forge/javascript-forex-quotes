@@ -1,6 +1,6 @@
 {
   "name": "forex-quotes",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Realtime forex quote API client",
   "main": "./lib/ForgeClient.js",
   "types": "./lib/ForgeClient.d.ts",
@@ -23,9 +23,9 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "test": "jest --verbose --coverage --runInBand tests/*/*.spec.ts",
     "lint": "tslint --project ./tsconfig.json 'src/**/*.ts'",
-    "build": "npm run lint && npm run test && tsc"
+    "lint-fix": "tslint --fix --project ./tsconfig.json 'src/**/*.ts'",
+    "build": "npm run lint && tsc"
   },
   "husky": {
     "hooks": {
