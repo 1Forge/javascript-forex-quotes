@@ -9,7 +9,7 @@ export interface ForgeClientSettings {
 export interface Quote {
   bid: number;
   ask: number;
-  float: number;
+  price: number;
   symbol: string;
   timestamp: number;
 }
