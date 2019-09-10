@@ -1,15 +1,7 @@
-import * as io from 'socket.io-client';
+import * as WebSocket from 'ws';
 import { Callback, Quote } from './ForgeClient';
 
-export interface SocketClientSettings {
-  port: number;
-  url: string;
-}
-
-const defaultSocketClientSettings: SocketClientSettings = {
-  port: 3000,
-  url: 'https://socket.forex.1forge.com',
-};
+const url = 'wss://api.1forge.com/socket';
 
 export enum IncomingEvents {
   MESSAGE = 'message',
@@ -33,16 +25,13 @@ export enum IOEvents {
 }
 
 export class SocketClient {
-  private socket?: SocketIOClient.Socket;
+  private socket?: WebSocket;
   private onConnectionCallback?: Callback;
   private onMessageCallback?: Callback;
   private onUpdateCallback?: Callback;
   private onDisconnectCallback?: Callback;
 
-  constructor(private apiKey: string, private settings?: SocketClientSettings) {
-    if (!settings) {
-      this.settings = defaultSocketClientSettings;
-    }
+  constructor(private apiKey: string) {
   }
 
   public onMessage(onMessage: Callback): this {
@@ -103,7 +92,7 @@ export class SocketClient {
 
   public disconnect(): this {
     if (this.socket)  {
-      this.socket.disconnect();
+      this.socket.close();
       this.socket = undefined;
     }
 
@@ -115,9 +104,7 @@ export class SocketClient {
   }
 
   private initializeSocketClient() {
-    const { url, port } = this.settings!;
-
-    this.socket = io.connect(`${url}:${port}`);
+    this.socket = new WebSocket(url);
 
     this.socket.on(IncomingEvents.LOGIN, this.handleLoginRequest);
     this.socket.on(IncomingEvents.POST_LOGIN_SUCCESS, this.handlePostLoginSuccess);
