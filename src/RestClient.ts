@@ -21,7 +21,7 @@ export interface Quota {
 }
 
 const defaultRestClientSettings: RestClientSettings = {
-  url: 'https://forex.1forge.com/1.0.3/',
+  url: 'https://api.1forge.com/',
 };
 
 export class RestClient {

@@ -1,9 +1,9 @@
+import WebSocket = require('ws');
 import { RestClient, RestClientSettings } from './RestClient';
-import { SocketClient, SocketClientSettings } from './SocketClient';
+import { SocketClient } from './SocketClient';
 
 export interface ForgeClientSettings {
   rest: RestClientSettings;
-  socket: SocketClientSettings;
 }
 
 export interface Quote {
@@ -33,9 +33,9 @@ class ForgeClient {
   private restClient: RestClient;
   private socketClient: SocketClient;
 
-  constructor(private apiKey: string, settings?: ForgeClientSettings) {
+  constructor(private apiKey: string, settings?: ForgeClientSettings, private temporary: boolean = true) {
     this.restClient = new RestClient(apiKey, settings && settings.rest);
-    this.socketClient = new SocketClient(apiKey, settings && settings.socket);
+    this.socketClient = new SocketClient(apiKey);
   }
 
   // SOCKET
@@ -102,17 +102,6 @@ class ForgeClient {
     return this.restClient.getQuota();
   }
 
-  // DEPRECATED
-
-  public async quota() {
-    console.log('ForgeClient.quota() is deprecated - please use ForgeClient.getQuota()');
-    return this.getQuota();
-  }
-
-  public async marketStatus(): Promise<MarketStatus> {
-    console.log('ForgeClient.marketStatus() is deprecated - please use ForgeClient.getMarketStatus()');
-    return await this.getMarketStatus();
-  }
 }
 
 export default ForgeClient;
