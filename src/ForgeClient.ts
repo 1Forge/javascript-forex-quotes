@@ -1,4 +1,3 @@
-import WebSocket = require('ws');
 import { RestClient, RestClientSettings } from './RestClient';
 import { SocketClient } from './SocketClient';
 

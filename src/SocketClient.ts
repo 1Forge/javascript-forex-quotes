@@ -1,4 +1,5 @@
-import * as WebSocket from 'ws';
+// tslint:disable-next-line
+const WebSocket = require('ws');
 import { Callback, Quote } from './ForgeClient';
 
 const url = 'wss://api.1forge.com/socket';
@@ -6,6 +7,7 @@ const url = 'wss://api.1forge.com/socket';
 export enum IncomingEvents {
   MESSAGE = 'message',
   FORCE_CLOSE = 'force_close',
+  HEART = 'heart',
   LOGIN = 'login',
   POST_LOGIN_SUCCESS = 'post_login_success',
   UPDATE = 'update',
@@ -20,12 +22,12 @@ export enum OutgoingEvents {
 }
 
 export enum IOEvents {
-  DISCONNECT = 'disconnect',
-  CONNECTION = 'connection',
+  DISCONNECT = 'close',
+  CONNECTION = 'open',
 }
 
 export class SocketClient {
-  private socket?: WebSocket;
+  private socket: any;
   private onConnectionCallback?: Callback;
   private onMessageCallback?: Callback;
   private onUpdateCallback?: Callback;
@@ -61,13 +63,13 @@ export class SocketClient {
       });
     }
 
-    this.socket!.emit(OutgoingEvents.SUBSCRIBE_TO, symbols);
+    this.emit(OutgoingEvents.SUBSCRIBE_TO, symbols);
 
     return this;
   }
 
   public subscribeToAll(): this {
-    this.socket!.emit(OutgoingEvents.SUBSCRIBE_TO_ALL);
+    this.emit(OutgoingEvents.SUBSCRIBE_TO_ALL);
 
     return this;
   }
@@ -79,13 +81,13 @@ export class SocketClient {
       });
     }
 
-    this.socket!.emit(OutgoingEvents.UNSUBSCRIBE_FROM, symbols);
+    this.emit(OutgoingEvents.UNSUBSCRIBE_FROM, symbols);
 
     return this;
   }
 
   public unsubscribeFromAll(): this {
-    this.socket!.emit(OutgoingEvents.UNSUBSCRIBE_FROM_ALL);
+    this.emit(OutgoingEvents.UNSUBSCRIBE_FROM_ALL);
 
     return this;
   }
@@ -106,15 +108,18 @@ export class SocketClient {
   private initializeSocketClient() {
     this.socket = new WebSocket(url);
 
-    this.socket.on(IncomingEvents.LOGIN, this.handleLoginRequest);
-    this.socket.on(IncomingEvents.POST_LOGIN_SUCCESS, this.handlePostLoginSuccess);
-    this.socket.on(IncomingEvents.MESSAGE, this.handleMessage);
-    this.socket.on(IncomingEvents.UPDATE, this.handleUpdate);
-    this.socket.on(IOEvents.DISCONNECT, this.handleDisconnect);
+    this.socket.on('close', this.handleDisconnect);
+    this.socket.on('error', this.disconnect);
+    this.socket.on('message', this.handleMessage);
+    this.socket.on('open', this.handleOpen);
   }
 
   private handleLoginRequest = () => {
-    this.socket!.emit(OutgoingEvents.LOGIN, this.apiKey);
+    this.emit(OutgoingEvents.LOGIN, this.apiKey);
+  }
+
+  private handleOpen = () => {
+    this.emit(OutgoingEvents.LOGIN, this.apiKey);
   }
 
   private handlePostLoginSuccess = () => {
@@ -126,11 +131,33 @@ export class SocketClient {
   }
 
   private handleMessage = (message: string) => {
+    const action = message.split(',')[0];
+    const body = message.split(',').slice(1).join(',');
+    switch (action) {
+      case IncomingEvents.LOGIN:
+        this.handleLoginRequest();
+        return;
+      case IncomingEvents.POST_LOGIN_SUCCESS:
+        this.handlePostLoginSuccess();
+        return;
+      case IncomingEvents.UPDATE:
+        this.handleUpdate(JSON.parse(body));
+        return;
+      case IncomingEvents.FORCE_CLOSE:
+        this.handleDisconnect();
+        return;
+      case IncomingEvents.HEART:
+        this.handleHeart();
+        return;
+    }
+
+    console.log('MESSAGE', action, body);
+
     if (!this.onMessageCallback) {
       return;
     }
 
-    this.onMessageCallback(message);
+    this.onMessageCallback(body);
   }
 
   private handleUpdate = (data: Quote) => {
@@ -141,11 +168,23 @@ export class SocketClient {
     this.onUpdateCallback(data.symbol, data);
   }
 
+  private handleHeart = () => {
+    this.emit('beat');
+  }
+
   private handleDisconnect = () => {
     if (!this.onDisconnectCallback) {
       return;
     }
 
     this.onDisconnectCallback();
+  }
+
+  private emit = (action: string, message?: any) => {
+    if (message == null) {
+      this.socket.send(action);
+    } else {
+      this.socket.send(`${action}|${message}`);
+    }
   }
 }
