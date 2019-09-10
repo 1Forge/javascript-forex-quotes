@@ -1,6 +1,6 @@
 {
   "name": "forex-quotes",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Realtime forex quote API client",
   "main": "./lib/ForgeClient.js",
   "types": "./lib/ForgeClient.d.ts",
