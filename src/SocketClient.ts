@@ -61,6 +61,7 @@ export class SocketClient {
       symbols.forEach((symbol) => {
         return this.subscribeTo(symbol);
       });
+      return this;
     }
 
     this.emit(OutgoingEvents.SUBSCRIBE_TO, symbols);
