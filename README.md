@@ -112,12 +112,12 @@ client.convert('EUR', 'USD', 100).then(response => {
 });
 
 // Check if the market is open:
-client.marketStatus().then(response => {
+client.getMarketStatus().then(response => {
     console.log(response);
 });
 
 // Check your usage / quota limit:
-client.quota().then(response => {
+client.getQuota().then(response => {
     console.log(response);
 });
 

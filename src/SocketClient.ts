@@ -2,7 +2,7 @@
 const WebSocket = require('ws');
 import { Callback, Quote } from './ForgeClient';
 
-const url = 'wss://api.1forge.com/socket';
+const url = 'wss://sockets.1forge.com/socket';
 
 export enum IncomingEvents {
   MESSAGE = 'message',
