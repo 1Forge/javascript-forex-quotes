@@ -1,6 +1,6 @@
 {
   "name": "forex-quotes",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "Realtime forex quote API client",
   "main": "./lib/ForgeClient.js",
   "types": "./lib/ForgeClient.d.ts",
@@ -38,7 +38,7 @@
     "quotes",
     "currency-converter"
   ],
-  "author": "Jacob Tyler Davis",
+  "author": "1Forge",
   "license": "MIT",
   "homepage": "https://1forge.com/",
   "bugs": "https://github.com/1Forge/javascript-forex-quotes/issues",
