@@ -81,8 +81,8 @@ class ForgeClient {
   public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
     try {
       return await this.restClient.getQuotes(symbols);
-    } catch{
-      return Promise.reject(new Error('No more than 949 pairs or 1898 curriencies!!')).catch(error => { return error });
+    } catch {
+      return Promise.reject(new Error('No more than 949 pairs or 1898 curriencies!!')).catch(error => error);
     }
   }
 
