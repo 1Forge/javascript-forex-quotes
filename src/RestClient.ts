@@ -21,7 +21,7 @@ export interface Quota {
 }
 
 const defaultRestClientSettings: RestClientSettings = {
-  url: 'https://api.1forge.com/',
+  url: 'https://beta.1forge.com/',
 };
 
 export class RestClient {
@@ -37,6 +37,7 @@ export class RestClient {
 
   public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
     const pairs = Array.isArray(symbols) ? symbols.join(',') : symbols;
+    console.log('Here is the pairs', pairs.length);
     return this.get<Quote[]>(RESTEndpoints.QUOTES, { pairs });
   }
 

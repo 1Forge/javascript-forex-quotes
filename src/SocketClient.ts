@@ -2,7 +2,7 @@
 const WebSocket = require('ws');
 import { Callback, Quote } from './ForgeClient';
 
-const url = 'wss://sockets.1forge.com/socket';
+const url = 'wss://betaws.1forge.com/socket';
 
 export enum IncomingEvents {
   MESSAGE = 'message',
@@ -94,7 +94,7 @@ export class SocketClient {
   }
 
   public disconnect(): this {
-    if (this.socket)  {
+    if (this.socket) {
       this.socket.close();
       this.socket = undefined;
     }
@@ -166,7 +166,7 @@ export class SocketClient {
       return;
     }
 
-    this.onUpdateCallback(data.symbol, data);
+    this.onUpdateCallback(data.s, data);
   }
 
   private handleHeart = () => {

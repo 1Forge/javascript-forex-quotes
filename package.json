@@ -23,8 +23,8 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "lint": "tslint --project ./tsconfig.json 'src/**/*.ts'",
-    "lint-fix": "tslint --fix --project ./tsconfig.json 'src/**/*.ts'",
+    "lint": "tslint --project ./tsconfig.json \"src/**/*.ts\"",
+    "lint-fix": "tslint --fix --project ./tsconfig.json \"src/**/*.ts\"",
     "build": "npm run lint && tsc"
   },
   "husky": {
