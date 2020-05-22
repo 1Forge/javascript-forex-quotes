@@ -37,7 +37,6 @@ export class RestClient {
 
   public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
     const pairs = Array.isArray(symbols) ? symbols.join(',') : symbols;
-    console.log('Here is the pairs', pairs.length);
     return this.get<Quote[]>(RESTEndpoints.QUOTES, { pairs });
   }
 

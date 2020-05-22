@@ -78,35 +78,14 @@ class ForgeClient {
     this.socketClient.disconnect();
   }
 
-  // REST
-
-  // public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
-  //   return await this.restClient.getQuotes(symbols);
-  // }
-
-  // public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
-  //   return new Promise<Quote[]>((resolve, reject) => {
-  //     if (symbols.length < 7683) {
-  //       var res = this.restClient.getQuotes(symbols);
-  //       resolve(res).catch(res);
-  //     } else {
-  //       var reason = new Error("No more than 949 pairs!!");
-  //       reject(reason);
-  //     }
-  //   });
-  // }
-
   public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
     try {
-      if (symbols.length < 7683) {
-        return await this.restClient.getQuotes(symbols);
-      }
-      return [];
-      // return new Promise<Quote[]>((resolve, reject) => {}
-    } catch (error) {
-      throw Error('No more than 949 pairs or 1898 curriencies!!');
+      return await this.restClient.getQuotes(symbols);
+    } catch{
+      return Promise.reject(new Error('No more than 949 pairs or 1898 curriencies!!')).catch(error => { return error });
     }
   }
+
   public async getSymbols(): Promise<string[]> {
     return await this.restClient.getSymbols();
   }
