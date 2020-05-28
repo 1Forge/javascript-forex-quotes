@@ -132,8 +132,8 @@ export class SocketClient {
   }
 
   private handleMessage = (message: string) => {
-    const action = message.split(',')[0];
-    const body = message.split(',').slice(1).join(',');
+    const action = message.split('|')[0];
+    const body = message.split('|').slice(1).join('|');
     switch (action) {
       case IncomingEvents.LOGIN:
         this.handleLoginRequest();
@@ -151,8 +151,6 @@ export class SocketClient {
         this.handleHeart();
         return;
     }
-
-    console.log('MESSAGE', action, body);
 
     if (!this.onMessageCallback) {
       return;

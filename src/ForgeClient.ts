@@ -82,7 +82,7 @@ class ForgeClient {
     try {
       return await this.restClient.getQuotes(symbols);
     } catch {
-      return Promise.reject(new Error('No more than 949 pairs or 1898 curriencies!!')).catch(error => error);
+      return Promise.reject(new Error('No more than 952 pairs or 1904 curriencies!!')).catch(error => error);
     }
   }
 
