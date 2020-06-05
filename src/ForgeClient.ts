@@ -31,10 +31,9 @@ export type Callback = (...args: any[]) => void;
 class ForgeClient {
   private restClient: RestClient;
   private socketClient: SocketClient;
-
-  constructor(private apiKey: string, settings?: ForgeClientSettings, private temporary: boolean = true) {
-    this.restClient = new RestClient(apiKey, settings && settings.rest);
-    this.socketClient = new SocketClient(apiKey);
+  constructor(private apiKey: string, private beta?: boolean, settings?: ForgeClientSettings, private temporary: boolean = true, ) {
+    this.restClient = new RestClient(apiKey, beta ? true : false, settings && settings.rest);
+    this.socketClient = new SocketClient(apiKey, beta ? true : false);
   }
 
   // SOCKET

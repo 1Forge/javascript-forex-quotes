@@ -21,15 +21,18 @@ export interface Quota {
 }
 
 const defaultRestClientSettings: RestClientSettings = {
-  url: 'https://beta.1forge.com/',
+  url: 'https://api.1forge.com/',
 };
 
 export class RestClient {
   private fetch: rm.RestClient;
 
-  constructor(private apiKey: string, private settings?: RestClientSettings) {
+  constructor(private apiKey: string, private beta: boolean, private settings?: RestClientSettings) {
     if (!settings) {
       this.settings = defaultRestClientSettings;
+    }
+    if (beta) {
+      this.settings!.url = 'https://beta.1forge.com/';
     }
 
     this.fetch = new rm.RestClient(this.settings!.url);
