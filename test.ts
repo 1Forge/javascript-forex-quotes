@@ -10,25 +10,23 @@ const client = new ForgeClient('0JHZqgJf7V3tvd7BA3MGThQB3NqVX7F9');
 
 // //All the symbols
 // client.getSymbols().then(response => {
-//     client.getQuotes(response).then((res) => {
-//         console.log(res);
-//         console.log("Here", res[0].s);
-//     });
+//     console.log(response);
+//     // client.getQuotes(response).then((res) => {
+//     //     console.log(res);
+//     //     console.log("Here", res[0].s);
+//     // });
 // });
 
 //Websockets
-client.onConnect(() => {
-    console.log('SUBSCRIBE');
-    client.subscribeTo('BTC/USD');
-});
-client.onUpdate((symbol, data) => {
-    console.log(symbol, data);
-});
-// client.getSymbols().then(response => {
-//     console.log(response);
+// client.onConnect(() => {
+//     console.log('SUBSCRIBE');
+//     client.subscribeTo('BTC/USD');
 // });
-client.onMessage((message) => {
-    console.log("msg", message);
-});
+// client.onUpdate((symbol, data) => {
+//     console.log(symbol, data);
+// });
+// client.onMessage((message) => {
+//     console.log("msg", message);
+// });
 
-client.connect();
+// client.connect();
