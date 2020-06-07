@@ -27,12 +27,9 @@ const defaultRestClientSettings: RestClientSettings = {
 export class RestClient {
   private fetch: rm.RestClient;
 
-  constructor(private apiKey: string, private beta: boolean, private settings?: RestClientSettings) {
+  constructor(private apiKey: string, private settings?: RestClientSettings) {
     if (!settings) {
       this.settings = defaultRestClientSettings;
-    }
-    if (beta) {
-      this.settings!.url = 'https://beta.1forge.com/';
     }
 
     this.fetch = new rm.RestClient(this.settings!.url);

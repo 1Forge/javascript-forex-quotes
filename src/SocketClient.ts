@@ -3,7 +3,6 @@ const WebSocket = require('ws');
 import { Callback, Quote } from './ForgeClient';
 
 const url = 'wss://sockets.1forge.com/socket';
-const urlBeta = 'wss://betaws.1forge.com/socket';
 
 export enum IncomingEvents {
   MESSAGE = 'message',
@@ -34,8 +33,7 @@ export class SocketClient {
   private onUpdateCallback?: Callback;
   private onDisconnectCallback?: Callback;
 
-  // constructor(private apiKey: string) {
-  constructor(private apiKey: string, private beta: boolean) {
+  constructor(private apiKey: string) {
   }
 
   public onMessage(onMessage: Callback): this {
@@ -109,7 +107,7 @@ export class SocketClient {
   }
 
   private initializeSocketClient() {
-    this.socket = this.beta ? new WebSocket(urlBeta) : new WebSocket(url);
+    this.socket = new WebSocket(url);
     this.socket.on('close', this.handleDisconnect);
     this.socket.on('error', this.disconnect);
     this.socket.on('message', this.handleMessage);
@@ -135,8 +133,8 @@ export class SocketClient {
 
   private handleMessage = (message: string) => {
     console.log(message);
-    const action = message.indexOf('|') > 1 ? message.split('|')[0] : message.split(',')[0];
-    const body = message.indexOf('|') > 1 ? message.split('|').slice(1).join('|') : message.split(',').slice(1).join(',');
+    const action = message.split('|')[0];
+    const body = message.split('|').slice(1).join('|');
     switch (action) {
       case IncomingEvents.LOGIN:
         this.handleLoginRequest();
