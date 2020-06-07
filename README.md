@@ -58,26 +58,26 @@ client.onDisconnect(() => {
 client.onConnect(() => {
 
     // Subscribe to a single currency pair
-    client.subscribeTo('EURUSD');
+    client.subscribeTo('EUR/USD');
 
     // Subscribe to an array of currency pairs
     client.subscribeTo([
-        'GBPJPY',
-        'AUDCAD',
-        'EURCHF',
+        'GBP/JPY',
+        'AUD/CAD',
+        'EUR/CHF',
     ]);
 
     // Subscribe to all currency pairs
     client.subscribeToAll();
 
     // Unsubscribe from a single currency pair
-    client.unsubscribeFrom('EURUSD');
+    client.unsubscribeFrom('EUR/USD');
 
     // Unsubscribe from an array of currency pairs
     client.unsubscribeFrom([
-        'GBPJPY',
-        'AUDCAD',
-        'EURCHF'
+        'GBP/JPY',
+        'AUD/CAD',
+        'EUR/CHF'
     ]);
 
     // Unsubscribe from all currency pairs
@@ -102,7 +102,7 @@ client.getSymbols().then(response => {
 });
 
 // Get quotes for specified symbols:
-client.getQuotes(['EURUSD', 'GBPJPY', 'AUDUSD']).then(response => {
+client.getQuotes(['EUR/USD', 'GBP/JPY', 'AUD/USD']).then(response => {
     console.log(response);
 });
 

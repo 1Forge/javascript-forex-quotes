@@ -6,11 +6,11 @@ export interface ForgeClientSettings {
 }
 
 export interface Quote {
-  bid: number;
-  ask: number;
-  float: number;
-  symbol: string;
-  timestamp: number;
+  b: number;
+  a: number;
+  p: number;
+  s: string;
+  t: number;
 }
 
 export interface ConversionResult {
@@ -31,7 +31,6 @@ export type Callback = (...args: any[]) => void;
 class ForgeClient {
   private restClient: RestClient;
   private socketClient: SocketClient;
-
   constructor(private apiKey: string, settings?: ForgeClientSettings, private temporary: boolean = true) {
     this.restClient = new RestClient(apiKey, settings && settings.rest);
     this.socketClient = new SocketClient(apiKey);
@@ -78,10 +77,12 @@ class ForgeClient {
     this.socketClient.disconnect();
   }
 
-  // REST
-
   public async getQuotes(symbols: string[] | string): Promise<Quote[]> {
-    return await this.restClient.getQuotes(symbols);
+    try {
+      return await this.restClient.getQuotes(symbols);
+    } catch {
+      return Promise.reject(new Error('No more than 952 pairs or 1904 curriencies!!')).catch(error => error);
+    }
   }
 
   public async getSymbols(): Promise<string[]> {

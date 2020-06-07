@@ -94,7 +94,7 @@ export class SocketClient {
   }
 
   public disconnect(): this {
-    if (this.socket)  {
+    if (this.socket) {
       this.socket.close();
       this.socket = undefined;
     }
@@ -108,11 +108,11 @@ export class SocketClient {
 
   private initializeSocketClient() {
     this.socket = new WebSocket(url);
-
     this.socket.on('close', this.handleDisconnect);
     this.socket.on('error', this.disconnect);
     this.socket.on('message', this.handleMessage);
     this.socket.on('open', this.handleOpen);
+    console.log(this.socket);
   }
 
   private handleLoginRequest = () => {
@@ -132,8 +132,9 @@ export class SocketClient {
   }
 
   private handleMessage = (message: string) => {
-    const action = message.split(',')[0];
-    const body = message.split(',').slice(1).join(',');
+    console.log(message);
+    const action = message.split('|')[0];
+    const body = message.split('|').slice(1).join('|');
     switch (action) {
       case IncomingEvents.LOGIN:
         this.handleLoginRequest();
@@ -152,8 +153,6 @@ export class SocketClient {
         return;
     }
 
-    console.log('MESSAGE', action, body);
-
     if (!this.onMessageCallback) {
       return;
     }
@@ -166,7 +165,7 @@ export class SocketClient {
       return;
     }
 
-    this.onUpdateCallback(data.symbol, data);
+    this.onUpdateCallback(data.s, data);
   }
 
   private handleHeart = () => {
