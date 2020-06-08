@@ -112,7 +112,6 @@ export class SocketClient {
     this.socket.on('error', this.disconnect);
     this.socket.on('message', this.handleMessage);
     this.socket.on('open', this.handleOpen);
-    console.log(this.socket);
   }
 
   private handleLoginRequest = () => {
@@ -132,7 +131,6 @@ export class SocketClient {
   }
 
   private handleMessage = (message: string) => {
-    console.log(message);
     const action = message.split('|')[0];
     const body = message.split('|').slice(1).join('|');
     switch (action) {
